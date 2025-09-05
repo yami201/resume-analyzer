@@ -5,12 +5,14 @@ import { usePuterStore } from '~/lib/puter'
 import { convertPdfToImage } from '~/lib/pdf2img'
 import { generateUUID } from '~/lib/utils'
 import { prepareInstructions } from '../../constants'
+import { useNavigate } from 'react-router'
 
 const Upload = () => {
     const [isProccessing, setIsProcessing] = useState(false)
     const [statusText, setStatusText] = useState('')
     const [file, setFile] = useState<File | null>(null)
     const { auth, fs, isLoading, ai, kv } = usePuterStore()
+    const navigate = useNavigate()
 
 
 
@@ -77,6 +79,10 @@ const Upload = () => {
         await kv.set(`resume:${uuid}`, JSON.stringify(data))
 
         setStatusText('Analysis complete, redirecting...')
+
+        console.log('data', data)
+
+        navigate(`/resume/${uuid}`)
         
     }
 
