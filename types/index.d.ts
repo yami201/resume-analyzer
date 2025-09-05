@@ -5,6 +5,17 @@ interface Job {
   requiredSkills: string[];
 }
 
+declare module "pdfjs-dist/build/pdf.mjs" {
+  const pdfjsLib: any;
+  export = pdfjsLib;
+}
+
+declare module "pdfjs-dist/build/pdf.worker.mjs" {
+  const worker: any;
+  export default worker;
+}
+
+
 interface Resume {
   id: string;
   companyName?: string;
