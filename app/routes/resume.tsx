@@ -16,7 +16,23 @@ const Resume = () => {
     const [imageUrl, setImageUrl] = useState('')
     const [resumeUrl, setResumeUrl] = useState('')
     const [feedback, setFeedback] = useState<Feedback | null>(null)
+    const [data, setData] = useState<Resume | null>(null)
+    const [isDeleting, setIsDeleting] = useState(false)
     const navigate = useNavigate()
+
+
+    const handleDelete = async () => {
+        if (!id || !data) return
+        if(!data?.resumePath || !data?.imagePath) return
+        setIsDeleting(true)
+
+        await kv.delete(`resume:${id}`)
+        await fs.delete(data.resumePath)
+        await fs.delete(data.imagePath)
+
+        navigate('/')
+
+    }
 
 
     useEffect(
@@ -36,7 +52,10 @@ const Resume = () => {
 
                 const data = JSON.parse(resume)
 
+                setData(data)
+
                 const resumeBlob = await fs.read(data.resumePath)
+
 
                 if (!resumeBlob) return
 
@@ -75,6 +94,14 @@ const Resume = () => {
                     <img src="/icons/back.svg" alt="logo" className="w-2.5 h-2.5" />
                     <span className="text-gray-800 text-sm font-semibold">Back to Homepage</span>
                 </Link>
+
+                <button 
+                    disabled={isDeleting}
+                    className="back-button disabled:opacity-50 disabled:cursor-not-allowed"
+                    onClick={handleDelete}>
+                    <img src="/icons/trash.svg"/>
+                    <span className="text-gray-800 text-sm font-semibold">Delete</span>
+                </button>
             </nav>
 
             <div className="flex flex-row w-full max-lg:flex-col-reverse">
