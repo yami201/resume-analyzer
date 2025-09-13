@@ -25,6 +25,27 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
+export function meta({ }: Route.MetaArgs) {
+  return [
+    { title: "ResumeIQ – AI Resume Analyzer" },
+    {
+      name: "description",
+      content:
+        "ResumeIQ is an AI-powered resume analyzer that helps job seekers optimize their resumes for ATS systems and job descriptions. Built with React, Tailwind, and PuterJS.",
+    },
+    { name: "author", content: "Mohammed Nejjar" },
+    { name: "keywords", content: "resume analyzer, AI resume, ATS resume checker, job application" },
+    { name: "viewport", content: "width=device-width, initial-scale=1" },
+
+    // Open Graph (social sharing)
+    { property: "og:title", content: "ResumeIQ – AI Resume Analyzer" },
+    { property: "og:description", content: "AI-powered resume analyzer that scores and optimizes resumes for ATS and job descriptions." },
+    { property: "og:type", content: "website" },
+    { property: "og:url", content: "https://yami-resumeiq.vercel.app/" },
+  ];
+};
+
+
 export function Layout({ children }: { children: React.ReactNode }) {
   const {init} = usePuterStore()
 
@@ -37,8 +58,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>

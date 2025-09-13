@@ -1,16 +1,8 @@
 import Navbar from "~/components/navbar";
-import type { Route } from "./+types/home";
 import ResumeCard from "~/components/resume-card";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { usePuterStore } from "~/lib/puter";
-
-export function meta({ }: Route.MetaArgs) {
-  return [
-    { title: "ResumeIQ" },
-    { name: "description", content: "Smart feedback for your resume!" },
-  ];
-}
 
 export default function Home() {
   const { auth, kv } = usePuterStore()
