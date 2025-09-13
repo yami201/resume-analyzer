@@ -19,7 +19,7 @@
 - **State Management**: Zustand  
 - **File Handling**: PDF.js, react-dropzone  
 - **Storage & AI & Auth**: PuterJS
-- **Build Tools**: Vite 6 + TypeScript 5  
+- **Build Tools**: Vite 6
 
 
 ## 📂 Project Structure  
